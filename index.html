@@ -55,7 +55,7 @@
         "email address"
         "phone hours";
       gap: 12px;
-      margin-bottom: 24px; /* Väli gridin ja otsikon välissä */
+      margin-bottom: 24px;
     }
 
     .item-email { grid-area: email; }
@@ -73,48 +73,61 @@
       border-radius: 99px;
       font-size: 11px;
       font-weight: 500;
-      color: #ffffff;
+      
+      /* Brighter text so it's readable against the darker background */
+      color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
       
       overflow: hidden;
       transform: translateZ(0); 
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(25, 25, 25, 0.9) 75%, rgba(180, 180, 180, 0.25) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      /* Darker background, but still slightly transparent */
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(25, 25, 25, 0.75) 75%, rgba(180, 180, 180, 0.2) 100%);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       
       border: none;
       box-shadow: 
-        inset 0 0 0 1px rgba(255, 255, 255, 0.15),
-        0 4px 12px rgba(0, 0, 0, 0.25),
-        inset 0 1.5px 1px rgba(255, 255, 255, 0.2);
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1.5px 1px rgba(255, 255, 255, 0.1);
+      
+      /* Increased master opacity so it looks darker on the white card */
+      opacity: 0.85;
       
       transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
                   box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                  background 0.3s ease;
+                  background 0.3s ease,
+                  opacity 0.3s ease,
+                  color 0.3s ease;
     }
 
     .glass-card:hover {
+      /* Restores full solid look on hover */
+      opacity: 1;
+      color: rgba(255, 255, 255, 1);
       transform: scale(1.02);
-      background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(35, 35, 35, 0.9) 75%, rgba(200, 200, 200, 0.3) 100%);
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(35, 35, 35, 0.85) 75%, rgba(200, 200, 200, 0.25) 100%);
       box-shadow: 
         inset 0 0 0 1px rgba(255, 255, 255, 0.2),
-        0 6px 16px rgba(0, 0, 0, 0.35),
-        inset 0 1.5px 2px rgba(255, 255, 255, 0.3);
+        0 6px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1.5px 2px rgba(255, 255, 255, 0.2);
     }
 
     .glass-icon {
       width: 12px;
       height: 12px;
-      fill: #ffffff; 
+      /* Brighter icon to match text */
+      fill: rgba(255, 255, 255, 0.9); 
       flex-shrink: 0;
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7)); 
-      transition: filter 0.3s ease;
+      filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4)); 
+      transition: filter 0.3s ease, fill 0.3s ease;
     }
 
     .glass-card:hover .glass-icon {
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1)); 
+      fill: rgba(255, 255, 255, 1);
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); 
     }
 
     .glass-text {
@@ -122,7 +135,7 @@
       overflow: hidden;
       text-overflow: ellipsis; 
       letter-spacing: -0.1px; 
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); 
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); 
     }
 
     /* TEKSTIEN TYYLIT */
@@ -236,7 +249,7 @@
       }
 
       .top-card {
-        padding: 18px 14px;
+        padding: 18px 10px; 
         margin-bottom: 16px;
       }
 
@@ -246,14 +259,20 @@
       }
 
       .glass-card {
-        padding: 4px 10px; 
-        font-size: 10px; 
-        gap: 5px;
+        padding: 5px 8px; 
+        font-size: 9px;   
+        gap: 4px;
       }
 
       .glass-icon {
         width: 10px; 
         height: 10px;
+      }
+
+      .glass-text {
+        white-space: normal; 
+        line-height: 1.2;
+        text-align: left;
       }
 
       .form-frame {
